@@ -1,11 +1,32 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import argparse
 import pandas as pd
 import pyarrow.parquet as pq
 
 from time import time
 from sqlalchemy import create_engine
+
+# user
+# password
+# host
+# port
+# database name
+# table name
+# url of csv file
+
+parser = argparse.ArgumentParser(description='Ingest CSV to Postgres')
+parser.add_argument('user', help='postgres username')
+parser.add_argument('pass', help='postgres password')
+parser.add_argument('host', help='postgres host')
+parser.add_argument('port', help='postgres port')
+parser.add_argument('db', help='postgres database name')
+parser.add_argument('table-name', help='results written to table')
+parser.add_argument('url', help='url of csv')
+
+args = parser.parse_args()
+print(args.accumulate(args.integers))
 
 raw_df = pd.read_parquet('yellow_tripdata_2024-01.parquet')
 
